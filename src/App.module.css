@@ -1,0 +1,30 @@
+.head{
+  display: flex;
+  gap:10px;
+  justify-content: center;
+  margin: 20px;
+}
+
+.urlInput{
+  padding: 12px 10px;
+  border: 0px;
+  border-radius: 5px;
+  width: 320px;
+  outline: none;
+  font-size: 1.2rem;
+  font-family: 'Salsa';
+}
+.container{
+  padding: 1rem;
+}
+
+@media (max-width:600px){
+  .urlInput{
+    padding: 6px;
+    width: 250px;
+    font-size: 1rem;
+  }
+  .container{
+    padding: 0.5rem;
+  }
+}
