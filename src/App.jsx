@@ -18,6 +18,20 @@ function App() {
     e.preventDefault()
     setUrl(e.target.value)
   }
+  const formatUrl =async (str)=>{
+    while(str.indexOf('http://')==0 || str.indexOf('https://')==0 ||str.indexOf('www.')==0 ){
+      if(str.indexOf('http://')==0){
+        str =await str.split('http://')[1]
+      }
+      else if(str.indexOf('https://')==0){
+        str =await str.split('https://')[1]
+      }else{
+        str =await str.split('www.')[1]
+      }
+      console.log(str)
+    }
+    return str
+  }
   const fetchFunction =async(props) =>{
     setFetched(false)
     setLoading(true)
@@ -52,10 +66,8 @@ function App() {
   }
   const makeAction = async ()=>{
     let dataDic = tempDic[0]
-    let modUrl =url.split('http://')[1] ||
-    url.split('https://')[1] ||
-    url.split('www.')[1] 
-    dataDic["target"] = url
+    let modUrl =await formatUrl(url)
+    dataDic["target"] = modUrl
     console.log(dataDic)
     await axios({
       method: 'post',

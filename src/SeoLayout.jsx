@@ -77,15 +77,17 @@ export default function SeoLayout(props) {
             </div>
         </div>
       {/* <ValidCard/> */}
-      <h2>H Tags</h2>
-      <div className={classes.tagDiv}>
+      {middleResult.meta.htags&&<h2>H Tags</h2>}
+      {middleResult.meta.htags&&<div className={classes.tagDiv}>
         {Object.keys(middleResult.meta.htags).map((tag,index)=>{
           const tagContent = middleResult.meta.htags[tag]
-          return <TagsCard data={{content:tagContent,tag:tag}}/>
+          if(tagContent){
+            return <TagsCard data={{content:tagContent,tag:tag}}/>
+          }
         })}
-      </div>
-      <h2>Speed Insights</h2>
-      <div className={classes.speedDiv}>
+      </div>}
+      {middleResult.page_timing&&<h2>Speed Insights</h2>}
+      {middleResult.page_timing&&<div className={classes.speedDiv}>
         {Object.keys(middleResult.page_timing).map((val,index)=>{
                 let Value = {}
                 let temp = middleResult.page_timing[val]
@@ -100,8 +102,9 @@ export default function SeoLayout(props) {
                 }
               })}
 
-      </div>
+      </div>}
       {Object.keys(LHR.categories).map((value,index)=>{
+        if(LHR.categories[value])
         return <PerCard value={LHR.categories[value]} keys={index} audits={LHR.audits}/>
       })}
     </div>
