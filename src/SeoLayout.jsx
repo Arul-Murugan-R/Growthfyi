@@ -41,7 +41,7 @@ export default function SeoLayout(props) {
             <img src={altimg} alt="" /><br />
             <h2 style={{margin:0}}>Image Not Found</h2>
             </div>}
-            {scrResult.image&&<img src={scrResult.img} alt="" />}
+            {scrResult.image&&<img src={scrResult.image} alt="" />}
           </div>
         </div>
         <div >
