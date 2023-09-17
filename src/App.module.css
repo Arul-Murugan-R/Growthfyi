@@ -3,6 +3,7 @@
   gap:10px;
   justify-content: center;
   margin: 20px;
+  flex-wrap: wrap;
 }
 
 .urlInput{
@@ -19,12 +20,17 @@
 }
 
 @media (max-width:600px){
-  .urlInput{
-    padding: 6px;
-    width: 250px;
-    font-size: 1rem;
-  }
   .container{
     padding: 0.5rem;
+  }
+}
+
+@media (max-width:525px){
+  .container{
+    padding: 2px;
+  }
+  button{
+    padding: 0px;
+    font-size: 0.5em;
   }
 }

@@ -1,9 +1,10 @@
 import React from 'react'
 import { ResultCard,ValidCard,TagsCard,PerCard } from './Components/Card'
-import resultJson from '../ExtractedOutput.json'
-import LightHouseReport from '../LightHouseOutput.json'
+import resultJson from '../tempJsons/ExtractedOutput.json'
+import LightHouseReport from '../tempJsons/LightHouseOutput.json'
 import classes from './Seo.module.css'
-import Percentage from './Components/Percentage'
+import CircularProgress from './Components/CircularProgress'
+import altimg from '../public/404.jpg'
 
 export default function SeoLayoutDummy() {
     const LHR = LightHouseReport[0].result[0]
@@ -14,9 +15,26 @@ export default function SeoLayoutDummy() {
         <div className={classes.topOne}>
           <h3 style={{textTransform:'uppercase'}}>All About this site</h3>
           <h2>Result of {LHR.requestedUrl}</h2>
-          <Percentage/>
           <div className={classes.additional}>
-            <img width={500} height={250} src="https://api.dataforseo.com/cdn/screenshot/09161941-6665-0444-0000-8dd78226976c" alt="" />
+          <div className={classes.stats}>
+          <CircularProgress
+           percentage={resultJson[0].result[0].items[0].onpage_score.toFixed()}
+           title="Page Score"
+           />
+          <div className={classes.substats}>
+            {Object.keys(LHR.categories).slice(0,4).map((key)=>{
+              const Dic = LHR.categories[key]
+              return <CircularProgress percentage={(Dic.score*100).toFixed()}
+              title={Dic.title} id={Dic.id}
+              />
+            })}
+          </div>
+          </div>
+            <div>
+            <img src={altimg} alt="" /><br />
+            <h2 style={{margin:0}}>Image Not Found</h2>
+            </div>
+            {/* <img src="https://api.dataforseo.com/cdn/screenshot/09161941-6665-0444-0000-8dd78226976c" alt="" /> */}
           </div>
         </div>
         <div >

@@ -84,3 +84,23 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+@media (max-width:520px){
+  .progress{
+    width:80px !important;
+  }
+  .progress label{
+    font-weight: none;
+    font-size: 10px;
+  }
+}
+
+@media (max-width:330px){
+  .progress{
+    width:60px !important;
+  }
+  .progress label{
+    font-weight: none;
+    font-size: 8px;
+  }
+}

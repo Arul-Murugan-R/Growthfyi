@@ -69,7 +69,7 @@
 }
 
 .tagsCard{
-    max-width:600px;
+    max-width:40rem;
     text-align: left;
     padding: 10px 20px;
     font-size: 1.2rem;
@@ -112,7 +112,7 @@
     text-align: left;
     gap:15px;
     padding: 20px;
-    max-width: 38rem;
+    max-width: 42rem;
     min-width: 250px;
     background: rgb(63, 63, 63);
     margin: 0px 5px 5px 0px;
@@ -173,14 +173,8 @@
         grid-template-columns: 1fr;
     }
     .PerCard .subCard{
-        padding: 10px;
+        padding: 20px 10px;
     }
-    /* .PerCard label.success,.PerCard label.failure{
-        display: inline;
-    }
-    .PerCard div.success,.PerCard div.failure{
-        display: none;
-    } */
     .PerCard .subCard h3{
         font-size: 1.2rem;
     }
@@ -188,4 +182,18 @@
         font-size: 1rem;
     }
 
+}
+
+@media (max-width:500px){
+    .tagsCard{
+        padding: 10px;
+        font-size: 1rem;
+    }
+    .tagsCard h3{
+        font-size: 1rem !important;
+    }
+    .tagsCard ul{
+        padding-left: 25px;
+        font-size: 0.9rem;
+    }
 }

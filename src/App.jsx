@@ -10,13 +10,16 @@ function App() {
   const [url,setUrl] = useState()
   const [EndPos,setEndPos] = useState()
   const [MidPos,setMidPos] = useState()
+  const [ScrPos,setScrPos] = useState()
   const [fetched,setFetched] = useState(false)
+  // console.log(tempDic)
   const [loading,setLoading] = useState(false)
   const urlHandler = (e) =>{
     e.preventDefault()
     setUrl(e.target.value)
   }
   const fetchFunction =async(props) =>{
+    setFetched(false)
     setLoading(true)
     const {path,data,setState} = props
     const post_array = [data]
@@ -34,27 +37,26 @@ function App() {
     }).then(async function (response) {
       var result = await response['data']['tasks'];
       // Result data
-      
-      return result
-    }).then((result)=>{
+      console.log(result);
       if(setState=="midPos")
         setMidPos(result)
       else if(setState=="endPos")
         setEndPos(result)
+      else if(setState=="scrShot")
+        setScrPos(result)
       return result
     })
     .catch(function (error) {
       console.log(error);
-      return error
     });
   }
-  const makeAction = async (e)=>{
-    e.preventDefault()
+  const makeAction = async ()=>{
     let dataDic = tempDic[0]
     let modUrl =url.split('http://')[1] ||
     url.split('https://')[1] ||
     url.split('www.')[1] 
     dataDic["target"] = url
+    console.log(dataDic)
     await axios({
       method: 'post',
       url: import.meta.env.VITE_DOS_API_URL + 'v3/on_page/task_post',
@@ -69,9 +71,11 @@ function App() {
     })
     .then(async (response)=>{
       var task = await response['data']['tasks']
+      console.log(task)
       let taskId
       if(task)
       taskId = task[0]["id"]
+      console.log(taskId)
       dataDic = tempDic[3]
         dataDic["url"] = url
       const endPos =await fetchFunction({
@@ -86,6 +90,16 @@ function App() {
           data: dataDic,
           setState:'midPos'
         })
+      dataDic = tempDic[1]
+      dataDic['url'] = url
+      const scrshot = await fetchFunction({
+        path: 'v3/on_page/page_screenshot',
+        data: dataDic,
+        setState:'scrShot'
+      })
+        console.log('worked')
+      // console.log(url)
+      console.log(midPos,endPos,scrshot)
       setLoading(false)
       setUrl("")
       setFetched(true)
@@ -96,12 +110,12 @@ function App() {
     <div className={classes.container}>
       <div className={classes.head} >
         <input type="text" name="url" className={classes.urlInput} onChange={urlHandler} value={url} placeholder='Website Url' />
-        <button  >SEO Report For Free</button>
+        <button onClick={makeAction}  >SEO Report For Free</button>
       </div>
       {loading&&<center>
       <Loader/>
       </center>}
-      {!loading&&fetched&&<SeoLayout content1={MidPos} content2={EndPos}/>}
+      {!loading&&fetched&&<SeoLayout content1={MidPos} content2={EndPos} content3={ScrPos}/>}
       {/* <SeoLayoutDummy/> */}
     </div>
   )
