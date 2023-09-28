@@ -4,9 +4,14 @@ This is a web application built using React.js that allows user to retrieve and 
 
 ## Features
 - SEO Data Retrieval 💥
-- Data Visualization 💯
-- User-Friendly Interface 🌟
+- Fetches and displays key SEO metrics such as Performance, Page Score, Accessibility and more. 💯
+- User-friendly interface for entering a website URL. 🌟
+- Highly Responsive for both laptop and mobile users. ✌️
 
+
+# Contribute
+
+Contributions are welcomed! If you'd like to contribute to this project, please follow the [contribution guidelines](https://github.com/github/docs/blob/325ec1c1488e0d1c30230f078a461e62f720019c/CONTRIBUTING.md).
 
 # React + Vite
 
